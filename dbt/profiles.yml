@@ -1,0 +1,22 @@
+# DBT Profile Configuration for DuckDB
+# =====================================
+# This file tells dbt how to connect to your DuckDB database
+# Place this in your ~/.dbt/ directory or in your project root
+
+smart_shamba:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: '../warehouse/duckdb/agri_analytics.db'
+      threads: 4
+      
+    prod:
+      type: duckdb
+      path: '../warehouse/duckdb/agri_analytics_prod.db'
+      threads: 8
+
+# Connection settings explained:
+# - type: duckdb (we're using DuckDB as our analytics engine)
+# - path: location of the DuckDB database file
+# - threads: number of parallel threads for dbt operations

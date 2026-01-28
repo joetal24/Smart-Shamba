@@ -1,0 +1,71 @@
+# DBT Sources Configuration
+# ==========================
+# This file defines the raw data sources that dbt will reference
+
+version: 2
+
+sources:
+  - name: raw
+    description: "Raw data loaded from external sources via Mage pipelines"
+    schema: main
+    
+    tables:
+      - name: raw_weather
+        description: "Raw weather data from OpenWeatherMap API"
+        columns:
+          - name: district
+            description: "District name in Uganda"
+            tests:
+              - not_null
+          - name: temperature
+            description: "Temperature in Celsius"
+            tests:
+              - not_null
+          - name: rainfall
+            description: "Rainfall in mm"
+          - name: timestamp
+            description: "When the weather data was collected"
+            tests:
+              - not_null
+      
+      - name: raw_prices
+        description: "Raw market price data for crops"
+        columns:
+          - name: district
+            description: "District name"
+            tests:
+              - not_null
+          - name: crop
+            description: "Crop name"
+            tests:
+              - not_null
+          - name: price_ugx_per_kg
+            description: "Current price in UGX per kilogram"
+            tests:
+              - not_null
+              - positive_values
+          - name: timestamp
+            description: "When the price data was collected"
+            tests:
+              - not_null
+      
+      - name: raw_vegetation
+        description: "Raw vegetation health (NDVI) data from satellite imagery"
+        columns:
+          - name: district
+            description: "District name"
+            tests:
+              - not_null
+          - name: ndvi_value
+            description: "Normalized Difference Vegetation Index (-1 to 1)"
+            tests:
+              - not_null
+              - accepted_values:
+                  # NDVI must be between -1 and 1
+                  severity: warn
+          - name: soil_moisture_pct
+            description: "Soil moisture percentage"
+          - name: timestamp
+            description: "When the vegetation data was collected"
+            tests:
+              - not_null

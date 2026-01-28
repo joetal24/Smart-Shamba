@@ -1,0 +1,30 @@
+# Core Data Processing
+pandas
+numpy
+
+# Database
+duckdb
+
+# Orchestration
+mage-ai
+
+# Data Transformation
+dbt-core
+dbt-duckdb
+
+# Visualization
+streamlit
+plotly
+folium
+
+# API Requests
+requests
+
+# Data Validation
+great-expectations
+
+# Environment Management
+python-dotenv
+
+# Utilities
+pyyaml

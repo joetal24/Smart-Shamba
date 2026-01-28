@@ -1,0 +1,31 @@
+# DBT Project Configuration
+# =========================
+name: 'smart_shamba'
+version: '1.0.0'
+config-version: 2
+
+# Profile configuration
+profile: 'smart_shamba'
+
+# Model paths
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+# Output directory for compiled files
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+# Model configurations
+models:
+  smart_shamba:
+    +materialized: view
+
+# Documentation
+docs-paths: ["docs"]
+
