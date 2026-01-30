@@ -11,6 +11,7 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 from datetime import datetime
+import os
 
 # Page configuration
 st.set_page_config(
@@ -20,8 +21,8 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Database path
-DB_PATH = './warehouse/duckdb/agri_analytics.db'
+# Database path - get from secrets or environment
+DB_PATH = st.secrets.get("db_path", os.getenv("DB_PATH", "./warehouse/duckdb/agri_analytics.db"))
 
 # Custom CSS
 st.markdown("""
